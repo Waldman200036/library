@@ -19,7 +19,9 @@ app.use('/js', express.static(path.join(dirname, '/node_modules/bootstrap/jqery/
 app.set('views', './src/views');
 app.set('view engine', 'pug');
 app.get('/', (_req, res) => {
-  res.render('index');
+  res.render('index', {
+    list: ['a', 'b'],
+  });
 });
 
 app.listen(port, () => {
