@@ -17,10 +17,11 @@ app.use('/css', express.static(path.join(dirname, '/node_modules/bootstrap/dist/
 app.use('/js', express.static(path.join(dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(dirname, '/node_modules/bootstrap/jqery/dist')));
 app.set('views', './src/views');
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.get('/', (_req, res) => {
   res.render('index', {
     list: ['a', 'b'],
+    title: 'Library',
   });
 });
 
