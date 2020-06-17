@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import p from 'path';
 
 const app = express();
+const port = process.env.PORT || 3000;
 const dbug = debug('app');
 const path = p;
 const dirname = path.resolve();
@@ -20,6 +21,6 @@ app.get('/', (_req, res) => {
   res.sendFile(path.join(dirname, 'views/index.html'));
 });
 
-app.listen(3000, () => {
-  dbug(`listening on port ${chalk.green('3000')}`);
+app.listen(port, () => {
+  dbug(`listening on port ${chalk.green(port)}`);
 });
