@@ -5,16 +5,19 @@ import express from 'express';
 const bookRouter = express.Router();
 
 const books = [{
+
   title: 'War and Peace',
   genres: 'Historical Fiction',
   author: 'Lev Nikolayevich Tolstoy'
 },
 {
+
   title: 'Les Miserables',
   genres: 'Historical Fiction',
   author: 'Victor Hugo'
 },
 {
+
   title: 'The Time Machine',
   genres: 'Science Fiction',
   author: 'H.G. Wells'
@@ -23,7 +26,7 @@ const books = [{
 
 bookRouter.route('/')
   .get((req, res) => {
-    res.render('books', {
+    res.render('bookListView', {
       nav: [{
         link: '/Books',
         title: 'Books'
@@ -36,9 +39,20 @@ bookRouter.route('/')
     });
   });
 
-bookRouter.route('/single')
+bookRouter.route('/:id')
   .get((req, res) => {
-    res.send('hello single book');
+    const { id } = req.params;
+    res.render('bookView', {
+      nav: [{
+        link: '/Books',
+        title: 'Books'
+      }, {
+        link: '/authors',
+        title: 'Authors'
+      }],
+      title: 'Library',
+      book: books[id],
+    });
   });
 
 export default bookRouter;
