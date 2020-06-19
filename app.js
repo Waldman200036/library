@@ -9,11 +9,17 @@ import bookRoutes from './src/routes/bookRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
-const bookRouter = bookRoutes;
-
 const dbug = debug('app');
 const path = p;
 const dirname = path.resolve();
+const nav = [{
+  link: '/Books',
+  title: 'Book'
+}, {
+  link: '/authors',
+  title: 'Author'
+}];
+const bookRouter = bookRoutes(nav);
 
 app.use(morgan('tiny'));
 app.use(express.static(path.join(dirname, '/public')));
