@@ -3,6 +3,7 @@ import express from 'express';
 import chalk from 'chalk';
 import debug from 'debug';
 import morgan from 'morgan';
+import sql from 'mssql';
 import p from 'path';
 // eslint-disable-next-line import/extensions
 import bookRoutes from './src/routes/bookRoutes.js';
@@ -12,6 +13,15 @@ const port = process.env.PORT || 3000;
 const dbug = debug('app');
 const path = p;
 const dirname = path.resolve();
+const config = {
+  user: 'library',
+  password: 'HINBbfdd#$^&&()JGGGFF',
+  server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
+  database: 'PSLibrary',
+  options: {
+    enableArithAbort: true
+  },
+};
 const nav = [{
   link: '/Books',
   title: 'Book'
@@ -21,6 +31,7 @@ const nav = [{
 }];
 const bookRouter = bookRoutes(nav);
 
+sql.connect(config).catch((err) => debug(err));
 app.use(morgan('tiny'));
 app.use(express.static(path.join(dirname, '/public')));
 app.use('/css', express.static(path.join(dirname, '/node_modules/bootstrap/dist/css')));
