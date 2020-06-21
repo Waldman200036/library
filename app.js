@@ -30,7 +30,7 @@ const nav = [{
   link: '/authors',
   title: 'Author'
 }];
-const bookRouter = bookRoutes(nav, config);
+const bookRouter = bookRoutes(nav);
 
 sql.connect(config).catch((err) => debug(err));
 app.use(morgan('tiny'));
