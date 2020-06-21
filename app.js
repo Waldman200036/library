@@ -1,26 +1,27 @@
 /* jshint esversion: 6 */
 import express from 'express';
 import chalk from 'chalk';
-import debug from 'debug';
+import Debug from 'debug';
 import morgan from 'morgan';
 import sql from 'mssql';
-import p from 'path';
+import Path from 'path';
 // eslint-disable-next-line import/extensions
 import bookRoutes from './src/routes/bookRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
-const dbug = debug('app');
-const path = p;
+const debug = Debug('app');
+const path = Path;
 const dirname = path.resolve();
 const config = {
-  user: 'library',
-  password: 'HINBbfdd#$^&&()JGGGFF',
-  server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
+  user: 'walter',
+  password: 'Holbert#1234',
+  server: 'server-56567655.database.windows.net',
   database: 'PSLibrary',
   options: {
-    enableArithAbort: true
-  },
+    enableArithAbort: false,
+    encrypt: true // Use this if you're on Windows Azure
+  }
 };
 const nav = [{
   link: '/Books',
@@ -29,7 +30,7 @@ const nav = [{
   link: '/authors',
   title: 'Author'
 }];
-const bookRouter = bookRoutes(nav);
+const bookRouter = bookRoutes(nav, config);
 
 sql.connect(config).catch((err) => debug(err));
 app.use(morgan('tiny'));
@@ -55,5 +56,5 @@ app.get('/', (_req, res) => {
 });
 
 app.listen(port, () => {
-  dbug(`listening on port ${chalk.green(port)}`);
+  debug(`listening on port ${chalk.green(port)}`);
 });

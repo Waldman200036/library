@@ -1,10 +1,14 @@
 /* jshint esversion: 6 */
 
 import express from 'express';
+import Debug from 'debug';
+import sql from 'mssql';
 
 const bookRouter = express.Router();
 
-function router(nav) {
+const debug = Debug('app:bookRoutes');
+
+function router(nav, config) {
   const books = [{
 
     title: 'War and Peace',
@@ -27,10 +31,16 @@ function router(nav) {
 
   bookRouter.route('/')
     .get((req, res) => {
-      res.render('bookListView', {
+      // const request = new sql.Request();
+      res.render('bookView', {
         nav,
         title: 'Library',
-        books
+        book: books[0],
+      });
+      sql.connect(config).then((pool) => pool.request().query('select * from book')).then((result) => {
+        debug(result);
+      }).catch((err) => {
+        debug(err);
       });
     });
 
