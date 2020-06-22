@@ -1,17 +1,18 @@
 /* jshint esversion: 8 */
 
 import express from 'express';
-import Debug from 'debug';
-import sql from 'mssql';
+// import Debug from 'debug';
+// import sql from 'mssql';
 
 const bookRouter = express.Router();
 
-const debug = Debug('app:bookRoutes');
+// const debug = Debug('app:bookRoutes');
 
 function router(nav) {
   bookRouter.route('/')
-    .get((req, res) => {
-      (async function query() {
+    // eslint-disable-next-line no-unused-vars
+    .get((_req, _res) => {
+      /*       (async function query() {
         const request = new sql.Request();
         const { recordset } = await request.query('select * from book');
         debug(recordset);
@@ -23,18 +24,19 @@ function router(nav) {
             books: recordset,
           }
         );
-      }());
+      }()); */
     });
   bookRouter.route('/:id')
-    .all((req, res, next) => {
-      (async function query() {
+    // eslint-disable-next-line no-unused-vars
+    .all((_req, _res, _next) => {
+      /*       (async function query() {
         const { id } = req.params;
         const request = new sql.Request();
         const { recordset } = await request.input('id', sql.Int, id)
           .query('select * from book where id = @id');
         [req.book] = recordset;
         next();
-      }());
+      }()); */
     })
     .get((req, res) => {
       res.render(
