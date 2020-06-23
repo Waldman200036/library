@@ -1,8 +1,6 @@
 /* jshint esversion: 8 */
 
-import express from 'express';
-// import Debug from 'debug';
-// import sql from 'mssql';
+const express = require('express');
 
 const bookRouter = express.Router();
 
@@ -52,4 +50,4 @@ function router(nav) {
   return bookRouter;
 }
 
-export default router;
+module.exports = router;

@@ -1,7 +1,7 @@
 /* jshint esversion: 8 */
-import express from 'express';
-import Mongodb from 'mongodb';
-import Debug from 'debug';
+const express = require('express');
+const Mongodb = require('mongodb') ;
+const Debug = require('debug') ;
 
 const { MongoClient } = Mongodb;
 const debug = Debug('app:adminRoutes');
@@ -22,7 +22,7 @@ const books = [{
 
   title: 'The Time Machine',
   genres: 'Science Fiction',
-  author: 'H.G. Wells'
+  author: 'H.G. Wells'use
 }
 ];
 const adminRouter = express.Router();
@@ -55,4 +55,4 @@ function router(nav) {
   return adminRouter;
 }
 
-export default router;
+module.exports = router;

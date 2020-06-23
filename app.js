@@ -1,19 +1,12 @@
 /* jshint esversion: 6 */
-import express from 'express';
-import chalk from 'chalk';
-import Debug from 'debug';
-import morgan from 'morgan';
-// import sql from 'mssql';
-import Path from 'path';
-// eslint-disable-next-line import/extensions
-import bookRoutes from './src/routes/bookRoutes.js';
-// eslint-disable-next-line import/extensions
-import adminRoutes from './src/routes/adminRoutes.js';
+const express = require('express');
+const chalk = require('chalk');
+const debug = require('debug')('app');
+const morgan = require('morgan');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const debug = Debug('app');
-const path = Path;
 const dirname = path.resolve();
 /* const config = {
   user: 'walter',
@@ -32,8 +25,8 @@ const nav = [{
   link: '/authors',
   title: 'Author'
 }];
-const bookRouter = bookRoutes(nav);
-const adminRouter = adminRoutes(nav);
+const bookRouter = require('./src/routes/bookRoutes')(nav);
+const adminRouter = require('./src/routes/adminRoutes')(nav);
 
 // sql.connect(config).catch((err) => debug(err));
 app.use(morgan('tiny'));
