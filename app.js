@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+/* jshint esversion: 8 */
 const express = require('express');
 const chalk = require('chalk');
 const debug = require('debug')('app');
