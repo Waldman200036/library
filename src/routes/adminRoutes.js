@@ -1,7 +1,7 @@
 /* jshint esversion: 8 */
 const express = require('express');
-const Mongodb = require('mongodb') ;
-const Debug = require('debug') ;
+const Mongodb = require('mongodb');
+const Debug = require('debug');
 
 const { MongoClient } = Mongodb;
 const debug = Debug('app:adminRoutes');
@@ -22,7 +22,7 @@ const books = [{
 
   title: 'The Time Machine',
   genres: 'Science Fiction',
-  author: 'H.G. Wells'use
+  author: 'H.G. Wells'
 }
 ];
 const adminRouter = express.Router();
