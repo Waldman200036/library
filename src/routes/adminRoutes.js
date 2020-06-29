@@ -1,10 +1,9 @@
 /* jshint esversion: 8 */
 const express = require('express');
 const Mongodb = require('mongodb');
-const Debug = require('debug');
 
 const { MongoClient } = Mongodb;
-const debug = Debug('app:adminRoutes');
+const debug = require('debug')('app:adminRoutes');
 
 const books = [{
 
@@ -37,6 +36,7 @@ function router(nav) {
       (async function mongo() {
         let client;
         try {
+          debug('Connecting to server');
           client = await MongoClient.connect(url);
           debug('Connected correctly to server');
 

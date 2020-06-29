@@ -1,24 +1,23 @@
 /* jshint esversion: 8 */
 const express = require('express');
 const Mongodb = require('mongodb');
-const Debug = require('debug');
+
+const { MongoClient } = Mongodb;
+const debug = require('debug')('app:bookRoutes');
 
 const bookRouter = express.Router();
 
-const {
-  MongoClient
-} = Mongodb;
-const debug = Debug('app:bookRoutes');
-
+// eslint-disable-next-line no-unused-vars
 function router(nav) {
   bookRouter.route('/')
     .get((req, res) => {
       const url = 'mongodb://localhost:27017';
       const dbName = 'LibraryApp';
-      // eslint-disable-next-line no-unused-expressions
+
       (async function mongo() {
         let client;
         try {
+          debug('Connecting to server');
           client = await MongoClient.connect(url);
           debug('Connected correctly to server');
 
@@ -34,47 +33,13 @@ function router(nav) {
               books
             }
           );
-        } catch (err) {
-          debug(err.stack);
+        } catch (error) {
+          debug(error.stack);
         }
-        client.close();
-      });
-      /*       (async function query() {
-        const request = new sql.Request();
-        const { recordset } = await request.query('select * from book');
-        debug(recordset);
-        res.render(
-          'bookListView',
-          {
-            nav,
-            title: 'Library',
-            books: recordset,
-          }
-        );
-      }()); */
-    });
-  bookRouter.route('/:id')
-    // eslint-disable-next-line no-unused-vars
-    .all((_req, _res, _next) => {
-      /*       (async function query() {
-        const { id } = req.params;
-        const request = new sql.Request();
-        const { recordset } = await request.input('id', sql.Int, id)
-          .query('select * from book where id = @id');
-        [req.book] = recordset;
-        next();
-      }()); */
-    })
-    .get((req, res) => {
-      res.render(
-        'bookView', {
-          nav,
-          title: 'Library',
-          book: req.book,
-        }
-      );
-    });
 
+        client.close();
+      }());
+    });
   return bookRouter;
 }
 

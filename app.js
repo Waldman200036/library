@@ -43,7 +43,7 @@ app.use('/admin', adminRouter);
 app.get('/', (_req, res) => {
   res.render('index', {
     nav: [{
-      link: '/Books',
+      link: '/books',
       title: 'Books'
     }, {
       link: '/authors',
