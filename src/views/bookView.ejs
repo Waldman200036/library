@@ -88,21 +88,32 @@
 
                     <div class="panel">
                         <div class="panel-body">
-                            <!--/stories-->
-                            <div class="col-md-10 col-sm-9">
-                                <h3><%=book.title%></h3>
+                            <!--/stories-->                            
+                            <div class="row">
+
+                                <div class="col-md-10 col-sm-9">
+                                <div class="col-md-2 col-sm-3">
+                                    <a href="#" class="story-title"></a>
+                                    <img src="<%=book.details.image_url%>" style="width:100px;height:100px" class="img-circle" alt="">                                                                
+                                </div>                                    
+
                                 <div class="row">
-                                    <div class="col-xs-9">
-                                        <h4><span class="label label-default"><%=book.author%></span></h4>
-                                        <h4>
-                                           
-                                        </h4>
-                                    </div>
-                                    <div class="col-xs-9"> <%=book.overview%></div>
-                                    <div class="col-xs-3"></div>
+                                        <div class="col-xs-9"> 
+                                            <h3><%=book.title%></h3>  
+                                            <h4><span class="label label-default"><%=book.author%></span></h4>
+                                            <h4>
+                                                <br>
+                                            <h5><%=book.details.description%></h5>
+                                        
+                                        </div>
                                 </div>
-                                <br><br>
+
+                                    
+                                </div>
+
                             </div>
+
+
                         </div>
                         <hr>
 
