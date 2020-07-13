@@ -41,6 +41,11 @@ function router(nav) {
       }());
       debug(req.body);
     });
+  authRouter.route('/logout')
+    .get((req, res) => {
+      req.logout();
+      res.redirect('/');
+    });
   authRouter.route('/signin')
     .get((req, res) => {
       res.render('signin', {
